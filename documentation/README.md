@@ -3,6 +3,7 @@
 ## Summary
 
 **Category:** XConnect
+
 There is no direct way to view page visit count from Sitecore tree
 
 The purpose of this module is to display page views of an Item in Sitecore content tree through gutter icon if that item have page views in xDB collection. We are getting page views of an item through xConnect from xDB.
@@ -26,15 +27,7 @@ How to enable?
 4. A blue color icon would be disaplyed on left side of an item.
 5. Upon hovering on blue icon it will display page visit count.
 
-(images/PageViews.jpg)
-
-You can embed images of different formats too:
-
-![Deal With It](images/deal-with-it.gif?raw=true "Deal With It")
-
-And you can embed external images too:
-
-![Random](https://placeimg.com/480/240/any "Random")
+![Sitecore](images/PageViews.jpg?raw=true "Deal With It")
 
 ## Video
 
