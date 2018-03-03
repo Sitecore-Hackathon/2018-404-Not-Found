@@ -9,7 +9,7 @@ There is no direct way to view page visit count from Sitecore tree
 The purpose of this module is to display page views of an Item in Sitecore content tree through gutter icon if that item have page views in xDB collection. We are getting page views of an item through xConnect from xDB.
 
 ## Pre-requisites
-As we did not had any records in xDB. So, we have created an utility which would create records in xDB. We can run this from http://<Your Instance Name>/Sitecore/Admin/AddXdbcontact.aspx.
+As we did not had any records in xDB. So, we have created an utility which would create records in xDB. We can run this from http://Your Instance Name/Sitecore/Admin/AddXdbcontact.aspx.
 
 ## Installation
 
@@ -31,6 +31,5 @@ How to enable?
 
 ## Video
 
-Please provide a video highlighing your Hackathon module submission and provide a link to the video. Either a [direct link](https://www.youtube.com/watch?v=EpNhxW4pNKk) to the video, upload it to this documentation folder or maybe upload it to Youtube...
+Please find video here (https://www.useloom.com/share/6dd1548faf1d4dfaa86e152bb6d45adf)
 
-[![Sitecore Hackathon Video Embedding Alt Text](https://img.youtube.com/vi/EpNhxW4pNKk/0.jpg)](https://www.youtube.com/watch?v=EpNhxW4pNKk)
