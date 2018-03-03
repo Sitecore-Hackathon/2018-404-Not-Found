@@ -17,8 +17,10 @@ namespace XConnect.Foundation.XConnectExtensions
     {
         public static XConnectClient GetClient()
         {
+            string xconnectCollectionCertificateConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["xconnect.collection.certificate"].ConnectionString;
+            string xconnectCollectionConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["xconnect.collection"].ConnectionString; ;
             CertificateWebRequestHandlerModifierOptions options =
-            CertificateWebRequestHandlerModifierOptions.Parse("StoreName=My;StoreLocation=LocalMachine;FindType=FindByThumbprint;FindValue=BDB624ADFC98D42D2CCC9E02FB2FBFA8C3919B23");
+            CertificateWebRequestHandlerModifierOptions.Parse("xconnectCollectionCertificateConnectionString");
 
             var certificateModifier = new CertificateWebRequestHandlerModifier(options);
 
@@ -26,9 +28,9 @@ namespace XConnect.Foundation.XConnectExtensions
             var timeoutClientModifier = new TimeoutHttpClientModifier(new TimeSpan(0, 0, 20));
             clientModifiers.Add(timeoutClientModifier);
 
-            var collectionClient = new CollectionWebApiClient(new Uri("https://sc90.xconnect/odata"), clientModifiers, new[] { certificateModifier });
-            var searchClient = new SearchWebApiClient(new Uri("https://sc90.xconnect/odata"), clientModifiers, new[] { certificateModifier });
-            var configurationClient = new ConfigurationWebApiClient(new Uri("https://sc90.xconnect/configuration"), clientModifiers, new[] { certificateModifier });
+            var collectionClient = new CollectionWebApiClient(new Uri(xconnectCollectionConnectionString + "/odata"), clientModifiers, new[] { certificateModifier });
+            var searchClient = new SearchWebApiClient(new Uri(xconnectCollectionConnectionString + "/odata"), clientModifiers, new[] { certificateModifier });
+            var configurationClient = new ConfigurationWebApiClient(new Uri(xconnectCollectionConnectionString + "/configuration"), clientModifiers, new[] { certificateModifier });
 
             var config = new XConnectClientConfiguration(
                 new XdbRuntimeModel(CollectionModel.Model), collectionClient, searchClient, configurationClient);
