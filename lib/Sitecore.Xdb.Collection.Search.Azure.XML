@@ -1,0 +1,898 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Xdb.Collection.Search.Azure</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureConnectionStringBuilder.Cspn">
+            <summary>
+            Connection String Parameter Names
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.FieldTypeResolver.IsTimespanField(System.Collections.Generic.IReadOnlyCollection{System.String},System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Check if provided path points to Timespan field.
+            </summary>
+            <param name="path">The path that includes one of Timespan properties (Hours, Minutes, etc.).</param>
+            <param name="parentPath"></param>
+            <returns>True if the path points to Timespan field; false otherwise.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.RebuildStatusDocument.ToRebuildStatus">
+            <summary>
+            Returns Rebuild Status instance.
+            </summary>
+            <returns>The Rebuild status.</returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.TimeSpanToAzureSerializer">
+            <summary>
+            Serializes <see cref="T:System.TimeSpan"/> to a set of Azure properties.
+            </summary>
+            <seealso cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.AzureSerializer" />
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.TimeSpanToAzureSerializer.TicksPostfix">
+            <summary>
+            The ticks postfix.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.TimeSpanToAzureSerializer.Serialize(System.Object)">
+            <summary>
+            Serializes the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Serialized values to index.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.TimeSpanToAzureSerializer.MapToAzureProperty(Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object,System.String)">
+            <summary>
+            Maps the property and the value to Azure property taking into account <see cref="T:System.TimeSpan"/> properties.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="value">The value.</param>
+            <param name="postfixOverride">The postfix override value.</param>
+            <returns>Mapped property of <see cref="T:System.TimeSpan"/> to indexed Azure property.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.TimeSpanToAzureSerializer.SerializeTicks(System.Object)">
+            <summary>
+            Serializes <see cref="T:System.TimeSpan"/> to its ticks.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Serialized value.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.AzureDocumentBuilder.MapComplexProperties(Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty)">
+            <summary>
+            Flattens the list of properties contained in the documents in <see cref="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Values"/>
+            </summary>
+            <remarks>
+            Note that as <see cref="T:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty"/> represents a list of documents, 
+            each entry in <see cref="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Values"/> has the same properties.
+            
+            For example, this would be one instance of <see cref="T:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty"/>:
+                Identifiers: [{ source: "a", type: 1 }, { source: "b", type: 2}] 
+            The <see cref="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Key"/> is "Identifiers" and 
+            <see cref="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Values"/> has [{ source: "a", type: 1 }, { source: "b", type: 2}] .
+            This gets flattened to 2 fields:
+                identifiers_source: ["a", "b"]
+                identifiers_type: [1, 2]
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.AzurePrimitiveFieldsMapper.GetPrimitiveSerializer(System.Type)">
+            <remarks>this does not account for the special serializer returned for empty strings</remarks>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.SyncTokenDocument.Bytes">
+            <summary>
+            json.net converts it to a base64 array, so the suffix _s is appropiate for Azure.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.Diagnostics.AzureSearchPerformanceCounters.IndexWriteBatchDelayAvg">
+            <summary>
+            Average delay on attempts to write a batch, milliseconds
+            </summary>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.Diagnostics.AzureSearchPerformanceCounters.IndexWriteBatchDelayAvgBase">
+            <summary>
+            Average delay on attempts to write a batch, milliseconds, Base
+            </summary>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.Diagnostics.AzureSearchPerformanceCounters.IndexWriteProcessBatchAttemptsCountAvg">
+            <summary>
+            Average amount of retries to post a batch. This indicates Azure Search required some (207) or all (503) of the documents to be posted later due to load on the system
+            </summary>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.Diagnostics.AzureSearchPerformanceCounters.IndexWriteProcessBatchAttemptsCountAvgBase">
+            <summary>
+            Average amount of retries to post a batch. This indicates Azure Search required some (207) or all (503) of the documents to be posted later due to load on the system, Base
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Processing.TasksProcessingQueue">
+            <summary>
+            Queued background tasks processing.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.TasksProcessingQueue.ThrowIfFailed">
+            <summary>
+            Throws an exception from processing queue if there has been one or it has been cancelled.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.TasksProcessingQueue.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.Retrier.RetryAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Int32,System.Threading.CancellationToken,Sitecore.XConnect.Diagnostics.Telemetry.IPerformanceCounters)">
+            <summary>
+            Retry for tasks.
+            </summary>
+            <remarks>
+            <paramref name="maximumTimeoutMilliseconds"/> is a maximum timeout between retries, the limit for increasing timeout on each retry.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.Retrier.RetryAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Int32,System.Threading.CancellationToken,Sitecore.XConnect.Diagnostics.Telemetry.IPerformanceCounters)">
+            <summary>
+            Retry for tasks.
+            </summary>
+            <remarks>
+            <paramref name="maximumTimeoutMilliseconds"/> is a maximum timeout between retries, the limit for increasing timeout on each retry.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch.GetDocIds">
+            <summary>
+            Returns all the doc IDs that have to awaited in the batch.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch.GetBatchIds">
+            <summary>
+            Returns a collection of batch ids that contains all the documents that need to be awaited in the batch.
+            It also contains ID of the current batch.
+            If the batch type is <see cref="F:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatchType.Delete"/>, the collection is always empty.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch.GetEnumerator">
+            <summary>
+            Pay attention that the method is not thread safe. Outer iteration should care about it.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch.GetPreviousBatchesEnumerator">
+            <summary>
+            Returns all the previous wait batches.
+            Pay attention that the method is not thread safe. Outer iteration should care about it.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatchContainer.AddBatch(Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch)">
+            <summary>
+            When adding a new batch, we check if it has changes with doc IDs that are already presented in the previous batches.
+            If it is so, then we adjust the previous batches in the way that they have actual changes to wait for.
+            1) the new batch is an update one.
+                 a) for the previous update batches we let them know that coinciding doc IDs have another batch ID, that is taken from the new batch.
+                 b) for the previous delete batches we remove the coinciding IDs from such wait batches.
+            2) the new batch is a delete one
+                 a) for the previous update batches we just remove the IDs from them.
+                 b) for the previous delete batches we do nothing, because we need to make sure the documents have been deleted anyway.
+            The algorithm above lets all the previous wait batches to be independed from each other, so the batches, that have been completely awaited, can easily be removed from the container later.
+            See <see cref="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch.UpdateWith(Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch)"/> for an impementation of the algorithm.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatchContainer.Remove(Sitecore.Xdb.Collection.Search.Azure.Processing.WaitBatch)">
+            <summary>Removes the batch from the linked list, connecting correspondingly the next and the previous batches to each other, updates _tail if needed.</summary> 
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Processing.TaskProcessingExtensions">
+            <summary>
+            TaskProcessingExtensions helper.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.TaskProcessingExtensions.ThrowOnTimeout(System.Threading.Tasks.Task,System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Throws Exception if timeout.
+            </summary>
+            <param name="toExecute">Task to execute.</param>
+            <param name="timeout">Timeout in milliseconds.</param>
+            <param name="message">Exception message.</param>
+            <param name="token">Cancellation token.</param>
+            <exception cref="T:System.Exception">Timeout exception.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Processing.TaskProcessingExtensions.CancelSafe(System.Threading.CancellationTokenSource)">
+            <summary>
+            Calls <see cref="M:System.Threading.CancellationTokenSource.Cancel"/> on the <paramref name="tokenSource"/> with suppressing <see cref="T:System.ObjectDisposedException"/>.
+            </summary>
+            <param name="tokenSource">The token source object to call <see cref="M:System.Threading.CancellationTokenSource.Cancel"/> on.</param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.LazyRetrier`1">
+            <summary>
+            Implements lazy initialization pattern with special exceptions handling,
+            so that it retries to run initialization using provided timeout.
+            </summary>
+            <typeparam name="T">The type of the value that should be lazily initialized.</typeparam>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.OfTypeExtractor.Extract(Sitecore.XConnect.Search.Queries.PredicateNode,System.Collections.Generic.List{System.String}@)">
+            <remarks>
+            The predicate received from Sitecore.XConnect includes an equals comparisson against the event type specified in the OfType operator.
+            The predicate additionally includes equals for all derived even types, joined together by <see cref="T:Sitecore.XConnect.Search.Queries.OrNode"/> and with the original condition with an <see cref="T:Sitecore.XConnect.Search.Queries.AndNode"/>.
+            
+            This is an example query: <c>Events.Any((@odata.type = "#Sitecore.XConnect.Outcome" OR @odata.type = "#Sitecore.XConnect.UnitTests.TestData.TestOutcome") AND MonetaryValue > 10)</c>
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapperArguments">
+            <summary>
+            Defines arguments class to transfer additional information for <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1"/>
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1">
+            <summary>
+            Builds an Azure oData filter expression based on a <see cref="T:Sitecore.XConnect.Search.Queries.PredicateNode"/>.
+            </summary>
+            <typeparam name="TRecord">The type of record being searched.</typeparam>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.FieldTypeResolver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1"/> class.
+            </summary>
+            <param name="fieldTypeResolver">The field type resolver.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.Visit(Sitecore.XConnect.Search.Queries.AnyNode,Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapperArguments)">
+            <remarks>
+            Only equals operator in <see cref="P:Sitecore.XConnect.Search.Queries.AnyNode.Predicate"/> is currently supported.
+            
+            A query like this: c => c.some.field.Any(e => e.another.field.Any(v => v == "some value")) 
+            is flattened into: some_field_another_field_ss:any(s: s eq 'some value').
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.GetAzurePropertyKey(Sitecore.XConnect.Search.Queries.FieldNode)">
+            <remarks>
+            When the type is <see cref="T:System.String"/>, this method always return the serializer for non <c>null</c> values, instead of the special empty string serializer.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.GetTopLevelClassInEventsList(System.Collections.Generic.IList{System.String})">
+            <remarks>
+            Note that the list is expected to have only derived events from a common base class, so that's the only one that doesn't have its base class in the list.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.TryVisitEmailClickedByMessageIdWorkaround(Sitecore.XConnect.Search.Queries.AnyNode,Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapperArguments,Sitecore.XConnect.Search.Queries.PredicateNode,System.String)">
+            <see cref="M:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectPropertiesExpander.AddMessageIdWorkaroundsSupport(Sitecore.XConnect.XObject,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object}})"/>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapper`1.TryVisitMessageIdAndDefinitionIdWorkaround(Sitecore.XConnect.Search.Queries.AnyNode,Sitecore.Xdb.Collection.Search.Azure.Queries.QueryNodeMapperArguments,Sitecore.XConnect.Search.Queries.PredicateNode,System.String)">
+            <see cref="M:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectPropertiesExpander.AddMessageIdWorkaroundsSupport(Sitecore.XConnect.XObject,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object}})"/>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Schema.AzurePrimitiveTypesMapper">
+            <summary>
+            Maps .NET types to Azure EDM types.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Schema.AzurePrimitiveTypesMapper.ToAzureDataType(System.Type)">
+            <summary>
+            Returns the name of the Azure Data Type for the <paramref name="type"/>, or null if there is not corresponding type for Azure.
+            </summary>
+            <param name="type">The type.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.Name">
+            <summary>
+            The name of the field.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.DataType">
+            <summary>
+            The data type for the field.
+            See <see href="https://docs.microsoft.com/en-us/rest/api/searchservice/supported-data-types">Supported data types (Azure Search) for a list of supported types</see>.
+            Default value is <see cref="F:Sitecore.Xdb.Collection.Search.Azure.Schema.AzureDataType.String"/>.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.Searchable">
+            <summary>
+            Marks the field as full-text search-able. This means it will undergo analysis such as word-breaking during indexing.
+            If you set a searchable field to a value like "sunny day", internally it will be split into the individual tokens "sunny" and "day".
+            This enables full-text searches for these terms. Fields of type Edm.String or Collection(Edm.String) are searchable by default.
+            Fields of other types are not searchable. 
+            Note: searchable fields consume extra space in your index since Azure Search will store an additional tokenized version of the field value for full-text searches.
+            If you want to save space in your index and you don't need a field to be included in searches, set searchable to false.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.Filterable">
+            <summary>
+            Allows the field to be referenced in $filter queries.
+            filterable differs from searchable in how strings are handled.
+            Fields of type Edm.String or Collection(Edm.String) that are filterable do not undergo word-breaking,
+            so comparisons are for exact matches only. For example, if you set such a field f to "sunny day",
+            $filter=f eq 'sunny' will find no matches, but $filter=f eq 'sunny day' will.
+            All fields are filterable by default.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.Sortable">
+            <summary>
+            By default the system sorts results by score, but in many experiences users will want to sort by fields in the documents.
+            Fields of type Collection(Edm.String) cannot be sortable.
+            All other fields are sortable by default.
+            <remarks>
+            All sortable fields must also be retrievable, because of cursor mark limitations that require having field values.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.Facetable">
+            <summary>
+            Typically used in a presentation of search results that includes hit count by category (e.g. search for digital cameras and see hits by brand, by megapixels, by price, etc.).
+            This option cannot be used with fields of type Edm.GeographyPoint. All other fields are facetable by default in Azure.
+            Note: Fields of type Edm.String that are filterable, sortable, or facetable can be at most 32 kilobytes in length.
+            This is because such fields are treated as a single search term, and the maximum length of a term in Azure Search is 32K kilobytes.
+            If you need to store more text than this in a single string field, you will need to explicitly set filterable, sortable, and facetable to false in your index definition.
+            Note: If a field has none of the above attributes set to true (searchable, filterable, sortable, facetable) the field is effectively excluded from the inverted index.
+            This option is useful for fields that are not used in queries, but are needed in search results. Excluding such fields from the index improves performance.
+            
+            Note: faceting is not used in XConnect, so the default value is false.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.IsKey">
+            <summary>
+            Marks the field as containing unique identifiers for documents within the index.
+            Exactly one field must be chosen as the key field and it must be of type Edm.String.
+            Key fields can be used to look up documents directly.
+            See <see href="https://docs.microsoft.com/en-us/rest/api/searchservice/lookup-document">Lookup Document (Azure Search Service REST API)</see> for details.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.Schema.JField.IsRetrievable">
+            <summary>
+            Sets whether the field can be returned in a search result.
+            This is useful when you want to use a field (e.g., margin) as a filter, sorting, or scoring mechanism but do not want the field to be visible to the end user.
+            This attribute must be true for key fields.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Schema.IndexDeployer.GetIndexSchema(System.String)">
+            <summary>
+            Gets current schema downloaded from Azure search service.  
+            </summary>
+            <param name="indexName">Name of index.</param>
+            <returns>IndexSchemaDocument instance or null if index was not found.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Schema.IndexDeployer.UpsertSchema(System.String,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            Checks if an index with the index name exists; if it does not, then creates a new one and deploys schema using the xDB model.
+            </summary>
+            <param name="indexName">The index name.</param>
+            <param name="model">The xDB model to deploy.</param>
+            <returns><c>true</c> if the index has been created; otherwise, false.</returns>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Azure.Schema.SchemaGenerator.IgnoredFacetProperties">
+            <summary>
+            Facet properties that are always null because only Facet.Content.Data is sent to JObjectPropertiesExpander.
+            The properties are added by XObject reflection and should not be indexed.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.CertificateValidator">
+            <summary>
+            Allows to pin-point certificate by its thumbprint.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.CertificateValidator.ServerCertificateValidationCallback(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Callback method to validate the server certificate.
+            </summary>
+            <param name="sender">An object that contains state information for this validation.</param>
+            <param name="certificate">The certificate used to authenticate the remote party.</param>
+            <param name="chain">The chain of certificate authorities associated with the remote certificate.</param>
+            <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
+            <returns>A Boolean value that determines whether the specified certificate is accepted for authentication.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.CertificateValidator.Initialize(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Add thumbprints to shared collection so several clients can register its pin-pointed certificates.
+            Example of thumbprint string: "ac ed 55 94 d4 4b 9a 98 f5 77 5f 9a 1d 58 64 0f ad 7b 5b 1a"
+            Example of thumbprint string: "aced5594d44b9a98f5775f9a1d58640fad7b5b1a"
+            </summary>
+            <param name="acceptedThumbprints"></param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException">
+            <summary>
+            Defines an exception for an error appeared when Azure core is attempted to be deleted.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureDeleteCoreException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException">
+            <summary>
+            Defines an exception for the error, when Azure Rebuild Core could not be found.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error. </param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureRebuildCoreNotFoundException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException">
+            <summary>
+            Defines an exception for a general error appeared in Azure response.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureResponseException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException">
+            <summary>
+            Defines an exception for en error appeared during Azure cores swapping.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.Failures.AzureSwapCoresFailedException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory">
+            <summary>
+            Web Client Factory interface
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory.HttpClient">
+            <summary>
+            Gets an HTTP Client with pre-configured options, like Base Address, 'api-key' header, etc.
+            </summary>
+            <returns><see cref="P:Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory.HttpClient"/>An HTTP client instance.</returns>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory.IndexName">
+            <summary>
+            Gets the index name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Key">
+            <summary>
+            Key that identifies array property which contains complex objects.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.ComplexArrayProperty.Values">
+            <summary>
+            Gets the list of already expanded complex objects.
+            </summary>
+            <remarks>
+            Each object is represented by a<see cref="T:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectExpandedProperties"/>, which could also contain complex array properties.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectPropertiesExpander">
+            <summary>
+            Expands all the <see cref="T:Sitecore.XConnect.XObject"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/> properties.
+            </summary>
+            <remarks>
+            Important: <see cref="T:System.Collections.Generic.IEnumerable`1"/> are expanded to follow the structure of the original XObject.
+            It may contain complexProperties which can be recursively nested.
+            The representation is search provider agnostic and should be further processed according to search provider expectations.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectPropertiesExpander.AddActiveListMembershipWorkaroundSupport(Sitecore.XConnect.XObject,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object}})">
+            <summary>
+            Adds support for 181202: <code>contact => contact.ListSubscriptions().Subscriptions.Any(s => s.ListDefinitionId == someId &amp;&amp; s.IsActive)</code>
+            </summary>
+            <remarks>
+            Notice the query wouldn't be normally supported with the current list limitations that don't allow complex expressions in the Any.
+            
+            The work around puts 2 values in the listdefinitionid_ss, the original list definition id + the same but with True or False appended at the end (depending on whether the subscription is Active/Inactive).
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.JObjectExpansion.JObjectPropertiesExpander.AddMessageIdWorkaroundsSupport(Sitecore.XConnect.XObject,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object}})">
+            <summary>
+            Adds support for 186562.
+            </summary>
+            <remarks>
+            Enables 2 types of queries: 
+            1. And comparison of DefinitionId + MessageId inside OfType + Any. Note additional to the And not normally allowed, the query also refers to the definitionId which is inherited.
+            2. OfType of derived classes filtering by MessageId.
+            
+            The work around puts a list of 3 values in the messageid field: messageId, messageId + definitionId, messageId + type.FullName.
+            The additional values with the suffixes allow to search for those combinations, thus supporting the additional use cases during query.
+            
+            Note that while the stored data supports all derived classes in #2, the query node mapper would need to read the schema to support for all derived classes.
+            The implementation at the time of writing avoids that cost, so the support is for only one of the derived classes.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings">
+            <summary>
+            Settings for rebuild processing
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.RebuildCoreName">
+            <summary>
+            Core name for index rebuild.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.CoreAdminUrl">
+            <summary>
+            Admin URL.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.SwapCoresUri">
+            <summary>
+            Uri for Azure swap request.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.RebuildCoreCleanUri">
+            <summary>
+            Uri for Azure cleanup.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.RebuildCoreStatusPath">
+            <summary>
+            Uri for Azure path.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.RebuildCoreWriteUrl">
+            <summary>
+            Uri for Azure write.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.AzureWriterSettings">
+            <summary>
+            Azure Writer Settings
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.RebuildCoreCommitUrl">
+            <summary>
+            Rebuild Core Commit URL
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,System.String)">
+            <summary>
+            Rebuild Azure Writer Settings constructor
+            </summary>
+            <param name="settings">Azure write settings</param>
+            <param name="rebuildCoreName">Name for rebuild core</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.RebuildAzureWriterSettings.#ctor(System.String,Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,System.Uri,System.Uri,System.Uri,System.Uri,System.Uri)">
+            <summary>
+            Rebuild Azure Writer Settings constructor
+            </summary>
+            <param name="azureWriterSettings">Writer Settings.</param>
+            <param name="rebuildCoreWriteUrl">Core Write URL.</param>
+            <param name="rebuildCoreCleanUri">Core Clean Uri.</param>
+            <param name="rebuildCoreStatusPath">Core Status Path</param>
+            <param name="swapCoresUri">Swap Cores URL.</param>
+            <param name="rebuildCoreName">Core Name.</param>
+            <param name="rebuildCoreCommitUrl">Core Commit URL.</param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureClient">
+            <summary>
+            Azure client, contains basic operations with Azure and transport.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureClient.#ctor(Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="httpClientFactory">Web client factory.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureClient.Client">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureClient.SendGetRequest(System.Uri)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="requestUri">Url to send a request.</param>
+            <returns>Returns response body asynchronously.</returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder">
+            <summary>
+            Implements ability to rebuild the Azure index.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            
+            </summary>
+            <param name="writerSettings"></param>
+            <param name="xdbModel"></param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder"/> class.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+            <param name="httpClientFactory">Http web client factory</param>
+            <param name="xdbModel">The XDB model.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,Sitecore.Xdb.Collection.Search.Azure.AzureWriter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder"/> class.
+            The constructor is used only for unit testing purposes.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+            <param name="writer">The index writer.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.BeginRebuild">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.CompleteRebuild(Sitecore.Xdb.Collection.ISyncToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureIndexRebuilder.WriteDataBatch(Sitecore.Xdb.Collection.Indexing.ChangedDataRecords)">
+            <inheritdoc />
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureRebuildStatusStorage">
+            <summary>
+            Implements ability to report about the rebuilding process in Azure.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureRebuildStatusStorage.WriteStatus(Sitecore.Xdb.Collection.Indexing.RebuildStatus)">
+            <inheritdoc />
+            <remarks>This implementation of the method does not wait until the document is committed, i.e. is available for search.</remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureRebuildStatusStorage.ReadStatus">
+            <inheritdoc />
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.DataRecordMapper">
+            <summary>
+            Maps <see cref="T:Sitecore.Xdb.Collection.Model.DataRecord"/> objects to a Azure document.
+            </summary>
+            <remarks>
+            The Azure document representation is an object model based on simple .net types,
+            and <see cref="T:System.Collections.Generic.IDictionary`2"/> to represent complex properties.
+            
+            The field values are .net types primitive types supported by <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.AzurePrimitiveFieldsMapper"/>, 
+            with the exception of the _childDocuments_ field that would contain a list of <see cref="T:System.Collections.Generic.IDictionary`2"/> within.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.DataRecordMapper.ReflectProperties(System.Object)">
+            <remarks>This method excludes indexer properties i.e. ones accessed like: <c>objectToIndex[0]</c></remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.DataRecordMapper.ReflectedPropertyCanBeIndexed(System.Collections.Generic.KeyValuePair{Sitecore.Xdb.Collection.Search.Azure.PropertyName,System.Object})">
+            <remarks>
+            The reflected property can not be indexed in this cases:
+            <list type="bullet">
+                <item><c>null</c> values</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.Id"/> property (although this field is not searchable, it is already indexed via the <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureDocuments.AzureDocumentBuilder"/> constructor as we need the id when retrieving results)</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.ConcurrencyToken"/> property (this field is not searchable)</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.Facets"/> property (it is indexed in a custom way in <see cref="M:Sitecore.Xdb.Collection.Search.Azure.DataRecordMapper.GetProperties(Sitecore.Xdb.Collection.Model.DataRecord)"/></item>
+                <item>the property contains a list of other <see cref="T:Sitecore.Xdb.Collection.Model.DataRecord"/>, such as <see cref="P:Sitecore.Xdb.Collection.Model.ContactDataRecord.Interactions"/></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.JsonPostCreator.CreateUpdateConfirmationFilter(System.Collections.Generic.IReadOnlyCollection{System.Guid},System.Collections.Generic.IReadOnlyCollection{System.Guid})">
+            <summary>The method generates query like the following
+             search.in(id,'id1,id2...',',') and search.in(changesetid,'id3,id4...',',')
+             However, for 'delete' operations we should not include changesetIds, it must be empty;
+             otherwise, the generated query will be incorrect, i.e. cannot be used to check deletes, because it will always return 0 results.
+             So that <paramref name="changesetIds"/> can be empty.
+             </summary> 
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Sampling.GetSamplePercentile(System.Guid)">
+            <summary>
+            Generates an evenly distributed (pseudo) random number given an ID. A query for 0 &lt; Percentile &lt; 0.2 will give approx. 20 % of the entities.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.Sampling.HashFnv1A(System.Byte[])">
+            <summary>
+            Implements Fowler–Noll–Vo 1a hashing algorithm.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureReader">
+            <summary>Provides read capability to the Azure index.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureReader.#ctor(Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="xdbModel">The XDB model.</param>
+            <param name="httpClientFactory">Web client factory.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureReader.GetDataCurrentlyIndexedToken">
+            <summary>
+            Gets a token that represents all currently indexed data.
+            </summary>
+            <returns>The token bytes.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureReader.SearchContacts(Sitecore.XConnect.Search.Queries.SearchQuery)">
+            <summary>
+            Searches the indexed contacts returning the ids for the matching contacts.
+            </summary>
+            <param name="searchQuery">the search query.</param>
+            <returns>the list of contact ids</returns>
+            <remarks>Search provider must implement all supported <see cref="T:Sitecore.XConnect.Search.Queries.QueryNodeType" />s used by <see cref="T:Sitecore.XConnect.Search.Queries.PredicateNode" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="searchQuery" /> is <c>null</c></exception>
+             <exception cref="T:System.ArgumentException"> when property <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Domain"/> of <paramref name="searchQuery"/> has value not equal to <see cref="F:Sitecore.XConnect.Search.Queries.SearchQueryDomain.Contacts"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">when <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Predicate"/> of <paramref name="searchQuery" /> contains a node that's not supported</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureReader.SearchInteractions(Sitecore.XConnect.Search.Queries.SearchQuery)">
+            <summary>
+            Searches the indexed interactions returning pairs of interaction and contact ids for the matching interactions.
+            </summary>
+            <param name="searchQuery">the search query.</param>
+            <returns>the list of contact ids</returns>
+            <remarks>Search provider must implement all supported <see cref="T:Sitecore.XConnect.Search.Queries.QueryNodeType" />s used by <see cref="T:Sitecore.XConnect.Search.Queries.PredicateNode" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="searchQuery" /> is <c>null</c></exception>
+             <exception cref="T:System.ArgumentException"> when property <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Domain"/> of <paramref name="searchQuery"/> has value not equal to <see cref="F:Sitecore.XConnect.Search.Queries.SearchQueryDomain.Interactions"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">when <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Predicate"/> of <paramref name="searchQuery" /> contains a node that's not supported</exception>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureUris">
+            <summary>
+            Utility class providing uris for <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureReader"/> and <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureWriter"/>
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureWebClientFactory">
+            <summary>
+            Implementation of Azure web client factory.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWebClientFactory.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class.
+            <remarks>
+            Connection string has the following format
+            &lt;add name="&lt;connectionStringName&gt;" connectionString="serviceUrl=&lt;url&gt;;indexName=&lt;indexName&gt;;apiKey=&lt;apiKey&gt;" /&gt;.
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWebClientFactory.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the class from DI configuration.
+            </summary>
+            <param name="options">DI configuration options.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWebClientFactory.IndexName">
+            <summary>
+            Gets the Azure Search Index name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWebClientFactory.HttpClient">
+            <inheritdoc />
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureWriter">
+            <summary>Provides write capability to the Azure index.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.#ctor(Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings,Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Azure.IWebClientFactory,Sitecore.XConnect.Diagnostics.Telemetry.IPerformanceCounters)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="writerSettings">The settings controlling the behavior of this writer instance.</param>
+            <param name="xdbModel">The XDB model.</param>
+            <param name="webClientFactory">Http client factory.</param>
+            <param name="counters">Performance counters.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.Write(Sitecore.Xdb.Collection.Indexing.ChangedDataRecords)">
+            <summary>The set of changes to write to the index.</summary>
+            <param name="changes">The changes.</param>
+            <exception cref="T:System.ArgumentNullException">The specified <paramref name="changes" /> was <c>null</c>.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.SignalChangesHaveBeenWritten(System.Byte[])">
+            <summary>
+            Signals all changes have been indexed, so the token associated to the index for search reflect this.
+            </summary>
+            <param name="token">The token indicating all changes have been indexed.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.PostBatchJson(System.Uri,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Executes post request as an application/json data type.
+            </summary>
+            <param name="uri">Uri to request.</param>
+            <param name="documentsPostJson">Json String  content to be posted.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection of failed document keys.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.RunWithThrottle``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.SemaphoreSlim)">
+            <summary>
+            Task runner with throttling to control amount of concurrent tasks for writing functionality.
+            </summary>
+            <param name="taskToExecute">Function which returns task to be executed.</param>
+            <param name="throttle">Semaphore instance.</param>
+            <returns>Task to be executed.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.Dispose">
+            <summary>
+            Dispose resources
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriter.Dispose(System.Boolean)">
+            <summary>
+            Dispose resources
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings">
+            <summary>
+            Settings for <see cref="T:Sitecore.Xdb.Collection.Search.Azure.AzureWriter"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Sitecore.Xdb.Collection.Indexing.IndexerSettings,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="maximumUpdateBatchSize">The maximum amount of document updates (this includes adds) to send together in one post to Azure.</param>
+            <param name="parallelizationDegree">Maximum amount of concurrent write operations.</param>
+            <param name="retryCount">Number of write retries.</param>
+            <param name="maximumRetryDelayMilliseconds">Maximum delay between retries.</param>
+            <param name="indexerSettings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+            <param name="maximumWaitTimeoutMilliseconds">Maximum wait timeout in milliseconds before terminating indexing.</param>
+            <param name="replicationTimeout">Estimated timeout in milliseconds necessary for Azure index replication across all instances.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.#ctor(System.Int32,Sitecore.Xdb.Collection.Indexing.IndexerSettings)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="maximumUpdateBatchSize">The maximum amount of document updates (this includes adds) to send together in one post to Azure.</param>
+            <param name="indexerSettings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Sitecore.Xdb.Collection.Indexing.IndexerSettings)">
+            <summary>
+            Initializes an instance of the settings class using runtime configuration settings.
+            </summary>
+            <param name="options">The options object passed in by dependency injection with the runtime settings configuration.</param>
+            <param name="settings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.IndexerSettings">
+            <summary>
+            Gets standard indexer settings that are not specific to a particular Search Provider.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.MaximumUpdateBatchSize">
+            <summary>
+            Gets the maximum amount of documents to send together in one post to Azure.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.RetryCount">
+            <summary>
+            Amount of write retries before fail.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.MaximumRetryDelayMilliseconds">
+            <summary>
+            Maximum delay between retries.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.MaximumWaitTimeoutMilliseconds">
+            <summary>
+            Maximum wait timeout before terminating data processing set in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Azure.AzureWriterSettings.ReplicationTimeout">
+            <summary>
+            Estimated timeout before data is replicated on Azure side set in milliseconds.
+            Data needs to be replicated to be durably retrievable through search requests.
+            </summary>
+        </member>
+    </members>
+</doc>

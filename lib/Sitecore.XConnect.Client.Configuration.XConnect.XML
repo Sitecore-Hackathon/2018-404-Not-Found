@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.XConnect.Client.Configuration.XConnect</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.XConnect.Client.Configuration.XConnect.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extensions for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.Extensions.ServiceCollectionExtensions.UseXConnectClientConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            Configures <see cref="T:Sitecore.XConnect.Client.XConnectClientConfiguration"/>.
+            </summary>
+            <param name="serviceCollection">The service collection to add services to.</param>
+            <param name="xdbModel">The semantic definition of data stored in xDB.</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /></returns>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.Extensions.ServiceCollectionExtensions.UseXConnectClientConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Sitecore.XConnect.Schema.XdbModel,System.String,System.String,System.String)">
+            <summary>
+            Configures <see cref="T:Sitecore.XConnect.Client.XConnectClientConfiguration"/>.
+            </summary>
+            <param name="serviceCollection">The service collection to add services to.</param>
+            <param name="xdbModel">The semantic definition of data stored in xDB.</param>
+            <param name="collectionConnectionStringName">The name of the connection string containing the collection service URL.</param>
+            <param name="collectionCertificateConnectionStringName">The name of the connection string containing the certificate information.</param>
+            <param name="allowInvalidClientCertificatesAppSettingKey">The key of the app setting containing the information about whether invalid client certificates are allowed to be used with the XConnect HTTP clients.</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /></returns>
+        </member>
+        <member name="T:Sitecore.XConnect.Client.Configuration.XConnect.ModelRegistration">
+            <summary>
+            A registration of an xConnect model.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.ModelRegistration.TypeName">
+            <summary>
+            Gets or sets the name of the type exposing the model.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.ModelRegistration.PropertyName">
+            <summary>
+            Gets or sets the name of the property exposing the model.
+            </summary>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.ModelRegistration.#ctor">
+            <summary>
+            Create a new instance.
+            </summary>
+        </member>
+        <member name="T:Sitecore.XConnect.Client.Configuration.XConnect.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.CouldNotFindServiceConnectionString">
+            <summary>
+              Looks up a localized string similar to Could not find &quot;xconnect.collection&quot; connection string for xConnect server endpoint URL..
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.FailedToFindProperty">
+            <summary>
+              Looks up a localized string similar to Failed to find property &apos;{0}&apos; on model &apos;{1}&apos;.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.FailedToInstantiateAs">
+            <summary>
+              Looks up a localized string similar to Failed to instantiate {0} as {1}.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.FailedToResolveModel">
+            <summary>
+              Looks up a localized string similar to Failed to resolve model &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.FailedToResolveModelType">
+            <summary>
+              Looks up a localized string similar to Failed to resolve model type &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.Resources.XConnectClientInitializationError">
+            <summary>
+              Looks up a localized string similar to Error initializing XConnect client..
+            </summary>
+        </member>
+        <member name="T:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator">
+            <summary>
+            An xConnect services configuration which adds the xConnect client configuration if it's missing.
+            </summary>
+        </member>
+        <member name="F:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator._modelRegistrations">
+            <summary>
+            The models to configure the client with.
+            </summary>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="config">The configuration used to configure this instance.</param>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator.#ctor">
+            <summary>
+            Create a new instance.
+            </summary>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Called by the XConnect configuration builder to bootstrap XConnect services.
+            </summary>
+            <param name="services">The services collection to add the client configuration services to.</param>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator.ResolveModels">
+            <summary>
+            Resolve the models from the registrations.
+            </summary>
+            <returns>The instantiated models.</returns>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator.ResolveModel(Sitecore.XConnect.Client.Configuration.XConnect.ModelRegistration)">
+            <summary>
+            Resolves a single model registration to a proper <see cref="T:Sitecore.XConnect.Schema.XdbModel"/>.
+            </summary>
+            <param name="registration">The registration to resolve.</param>
+            <returns>The instantiated model.</returns>
+        </member>
+        <member name="T:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfiguratorOptions">
+            <summary>
+            Options used to configure the <see cref="T:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfigurator"/> type.
+            </summary>
+        </member>
+        <member name="P:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfiguratorOptions.Models">
+            <summary>
+            Gets or sets the models that have been registered to use with the xConnect client.
+            </summary>
+        </member>
+        <member name="M:Sitecore.XConnect.Client.Configuration.XConnect.XConnectClientConfigurationConfiguratorOptions.#ctor">
+            <summary>
+            Create a new instance.
+            </summary>
+        </member>
+    </members>
+</doc>

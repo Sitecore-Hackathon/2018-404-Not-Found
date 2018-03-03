@@ -1,0 +1,920 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Xdb.Collection.Search.Solr</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.CertificateValidator">
+            <summary>
+            Allows to pin-point certificate by its thumbprint.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.CertificateValidator.ServerCertificateValidationCallback(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Callback method to validate the server certificate.
+            </summary>
+            <param name="sender">An object that contains state information for this validation.</param>
+            <param name="certificate">The certificate used to authenticate the remote party.</param>
+            <param name="chain">The chain of certificate authorities associated with the remote certificate.</param>
+            <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
+            <returns>A Boolean value that determines whether the specified certificate is accepted for authentication.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.CertificateValidator.Initialize(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Add thumbprints to shared collection so several clients can register its pin-pointed certificates.
+            Example of thumbprint string: "ac ed 55 94 d4 4b 9a 98 f5 77 5f 9a 1d 58 64 0f ad 7b 5b 1a"
+            Example of thumbprint string: "aced5594d44b9a98f5775f9a1d58640fad7b5b1a"
+            </summary>
+            <param name="acceptedThumbprints"></param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException">
+            <summary>
+            Defines an exception for an error appeared when Solr core is attempted to be deleted.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrDeleteCoreException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException">
+            <summary>
+            Defines an exception for the error, when Solr Rebuild Core could not be found.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error. </param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException">
+            <summary>
+            Defines an exception for a general error appeared in Solr response.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrResponseException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException">
+            <summary>
+            Defines an exception for en error appeared during Solr cores swapping.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException" /> class.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException" /> class with a specified error message.</summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.
+            If the <paramref name="innerException" /> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrSwapCoresFailedException" /> class with serialized data.</summary>
+            <param name="info">The object that holds the serialized object data. </param>
+            <param name="context">The contextual information about the source or destination. </param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory">
+            <summary>
+            Web Client Factory interface
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory.GetHttpClient(Sitecore.Xdb.Collection.Search.Solr.WebClientProperties)">
+            <summary>
+            Gets HttpClient.
+            </summary>
+            <returns>Http client.</returns>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.ComplexArrayProperty.Key">
+            <summary>
+            Key that identifies array property which contains complex objects.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.ComplexArrayProperty.Values">
+            <summary>
+            Gets the list of already expanded complex objects.
+            </summary>
+            <remarks>
+            Each object is represented by a<see cref="T:Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.JObjectExpandedProperties"/>, which could also contain complex array properties.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.JObjectPropertiesExpander">
+            <summary>
+            Expands all the <see cref="T:Sitecore.XConnect.XObject"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/> properties.
+            </summary>
+            <remarks>
+            Important: <see cref="T:System.Collections.Generic.IEnumerable`1"/> are expanded to follow the structure of the original XObject.
+            It may contain complexProperties which can be recursively nested.
+            The representation is search provider agnostic and should be further processed according to search provider expectations.
+            </remarks>
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.JObjectPropertiesExpander.IgnoredFacetProperties">
+            <summary>
+            Facet properties that are always null because only Facet.Content.Data is sent to JObjectPropertiesExpander.
+            The properties are added by XObject reflection and should not be indexed.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Queries.NotNodeRemover">
+            <summary>
+            Visitor that removes the found <see cref="T:Sitecore.XConnect.Search.Queries.NotNode"/> by applying the reverse operations.
+            </summary>
+            <remarks>
+            The argument of the visitor states whether it must invert the node,
+            when processing the predicate of a not node.
+            
+            If a nested not node is found, then the argument becomes true for its predicate.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapperArguments">
+            <summary>
+            Defines arguments class to transfer additional information for <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.FieldTypeResolver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1"/> class.
+            </summary>
+            <param name="fieldTypeResolver">The field type resolver.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.Visit(Sitecore.XConnect.Search.Queries.AnyNode,Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapperArguments)">
+            <remarks>
+            We don't have a default implementation for visit, because we need to know the type of the field,
+            otherwise we'd either assume the field is a primitive array or a complex array,
+            which are modeled differently in Solr i.e. array field vs. nested documents. 
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.Visit(Sitecore.XConnect.Search.Queries.NotNode,Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapperArguments)">
+            <remarks>
+            Solr has trouble with parenthesis that only have negated clauses i.e.: (!field:value).
+            see discussion on: https://issues.apache.org/jira/browse/LUCENE-167. 
+            
+            Due to this, we make sure our expression always have a positive term: (!field:value AND *).
+            This avoids issues that can happen depending on where in the query this node is.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.GetSolrPropertyKey(Sitecore.XConnect.Search.Queries.FieldNode)">
+            <remarks>
+            When the type is <see cref="T:System.String"/>, this method always return the serializer for non <c>null</c> values, instead of the special empty string serializer.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.GetChildDocumentPropertyMatchesSubqueryPredicate(Sitecore.XConnect.Search.Queries.AnyNode)">
+            <summary>Gets a node that matches the path property we put into the nested documents</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.FieldIsNullQuery(Sitecore.XConnect.Search.Queries.FieldNode)">
+            <remarks>
+            The <see cref="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrDocumentBuilder.AddSupportedProperties(Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrPrimitiveFieldsMapper,Sitecore.Xdb.Collection.Search.Solr.JObjectExpansion.JObjectExpandedProperties)"/> method used during indexing,
+            ignores fields with <c>null</c> values. That means the field is not sent to Solr.
+            Due to this, what the query checks is whether the field does not have a value.
+            
+            As this is a negation, it uses AND * as described in <see cref="M:Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapper`1.Visit(Sitecore.XConnect.Search.Queries.NotNode,Sitecore.Xdb.Collection.Search.Solr.Queries.QueryNodeMapperArguments)"/>.
+            
+            As empty strings add an _isempty_b field instead of the normal field, we additionally check that the empty field does not have a value.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings">
+            <summary>
+            Settings for rebuild processing
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.RebuildCoreName">
+            <summary>
+            Core name for index rebuild.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.CoreAdminUrl">
+            <summary>
+            Admin URL.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.SwapCoresUri">
+            <summary>
+            Uri for solr swap request.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.RebuildCoreCleanUri">
+            <summary>
+            Uri for solr cleanup.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.RebuildCoreStatusPath">
+            <summary>
+            Uri for Solr path.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.RebuildCoreWriteUrl">
+            <summary>
+            Uri for Solr write.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.SolrWriterSettings">
+            <summary>
+            Solr Writer Settings
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.RebuildCoreCommitUrl">
+            <summary>
+            Rebuild Core Commit URL
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,System.String)">
+            <summary>
+            Rebuild Solr Writer Settings constructor
+            </summary>
+            <param name="settings">Solr write settings</param>
+            <param name="rebuildCoreName">Name for rebuild core</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.RebuildSolrWriterSettings.#ctor(System.String,Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,System.Uri,System.Uri,System.Uri,System.Uri,System.Uri,System.Uri)">
+            <summary>
+            Rebuild Solr Writer Settings constructor
+            </summary>
+            <param name="solrWriterSettings">Writer Settings.</param>
+            <param name="rebuildCoreWriteUrl">Core Write URL.</param>
+            <param name="rebuildCoreCleanUri">Core Clean Uri.</param>
+            <param name="rebuildCoreStatusPath">Core Status Path</param>
+            <param name="swapCoresUri">Swap Cores URL.</param>
+            <param name="coreAdminUrl">Core Admin URL.</param>
+            <param name="rebuildCoreName">Core Name.</param>
+            <param name="rebuildCoreCommitUrl">Core Commit URL.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.FieldTypeResolver.IsTimespanField(System.Collections.Generic.IReadOnlyCollection{System.String},System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Check if provided path points to Timespan field.
+            </summary>
+            <param name="path">The path that includes one of Timespan properties (Hours, Minutes, etc.).</param>
+            <param name="parentPath"></param>
+            <returns>True if the path points to Timespan field; false otherwise.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.RebuildStatusDocument.ToRebuildStatus">
+            <summary>
+            Returns Rebuild Status instance.
+            </summary>
+            <returns>The Rebuild status.</returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.TimeSpanToSolrSerializer">
+            <summary>
+            Serializes <see cref="T:System.TimeSpan"/> to a set of Solr properties.
+            </summary>
+            <seealso cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrSerializer" />
+        </member>
+        <member name="F:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.TimeSpanToSolrSerializer.TicksPostfix">
+            <summary>
+            The ticks postfix.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.TimeSpanToSolrSerializer.Serialize(System.Object)">
+            <summary>
+            Serializes the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Serialized values to index.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.TimeSpanToSolrSerializer.MapToSolrProperty(System.String,System.Object)">
+            <summary>
+            Maps the property and the value to solr property taking into account <see cref="T:System.TimeSpan"/> properties.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="value">The value.</param>
+            <returns>Mapped property of <see cref="T:System.TimeSpan"/> to indexed Solr property.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.TimeSpanToSolrSerializer.SerializeTicks(System.Object)">
+            <summary>
+            Serializes <see cref="T:System.TimeSpan"/> to its ticks.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Serialized value.</returns>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrPrimitiveFieldsMapper.EmptyStringSerializer">
+            <summary>
+            Is used to tell the difference between null value and empty string in Solr.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrPrimitiveFieldsMapper.GetPrimitiveSerializer(System.Type)">
+            <remarks>this does not account for the special serializer returned for empty strings</remarks>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SyncTokenDocument.Bytes">
+            <summary>
+            json.net converts it to a base64 array, so the suffix _s is appropiate for Solr.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrClient">
+            <summary>
+            Solr client, contains basic operations with SOLR and transport.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrClient.#ctor(Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory,Sitecore.Xdb.Collection.Search.Solr.WebClientProperties)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="httpClientFactory">Web client factory.</param>
+            <param name="settings">Web client settings.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrClient.HttpClient">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrClient.SendGetRequestAsync(System.Uri)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="requestUri">Url to send a request.</param>
+            <returns>Returns response body asynchronously.</returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder">
+            <summary>
+            Implements ability to rebuild the Solr index.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder"/> class.
+            </summary>
+            <param name="writerSettings"></param>
+            <param name="xdbModel"></param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder"/> class.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+            <param name="httpClientFactory">Http web client factory</param>
+            <param name="xdbModel">The XDB model.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.Xdb.Collection.Search.Solr.SolrWriter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder"/> class.
+            The constructor is used only for unit testing purposes.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+            <param name="writer">The index writer.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.BeginRebuild">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.CompleteRebuild(Sitecore.Xdb.Collection.ISyncToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.WriteDataBatch(Sitecore.Xdb.Collection.Indexing.ChangedDataRecords)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.PrepareRebuildCore">
+            <summary>
+            Prepares the SOLR instance for rebuild.
+            </summary>
+            <returns>Task to execute.</returns>
+            <exception cref="T:Sitecore.Xdb.Collection.Search.Solr.Failures.SolrRebuildCoreNotFoundException">Throws if core is not found.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.RebuildCoreExists">
+            <summary>
+            Checks if the rebuild core exists.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.CleanRebuildCore">
+            <summary>
+            Clean up the Solr rebuild core.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.SwapCores">
+            <summary>
+            Swaps the SOLR cores after rebuild.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.Dispose">
+            <summary>
+            Dispose resources
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrIndexRebuilder.Dispose(System.Boolean)">
+            <summary>
+            Dispose resources
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage">
+            <summary>
+            Implements ability to report about the rebuilding process in Solr.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage"/> class.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+            <param name="httpClientFactory">Web client factory.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage"/> class.
+            </summary>
+            <param name="writerSettings">The writer settings.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.WriteStatus(Sitecore.Xdb.Collection.Indexing.RebuildStatus)">
+            <inheritdoc />
+            <remarks>This implementation of the method does not wait until the document is committed, i.e. is available for search.</remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.ReadStatus">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.Dispose">
+            <summary>
+            Dispose resources
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrRebuildStatusStorage.Dispose(System.Boolean)">
+            <summary>
+            Dispose resources
+            </summary>
+            <param name="disposing">[true] if internal resources should be disposed.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrResults.JsonResultsParser.ParseSearchResponse``1(Newtonsoft.Json.JsonTextReader)">
+            <remarks>
+            The returned <see cref="T:Sitecore.Xdb.Collection.Search.SearchResult`1"/> contains an enumerator that uses <paramref name="reader"/>,
+            when the enumerator or the result instance gets disposed, the <paramref name="reader"/> will be disposed.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrResults.JsonResultsParser.ParseResponseBody``1(Newtonsoft.Json.JsonTextReader)">
+            <remarks>
+            The returned <see cref="T:Sitecore.Xdb.Collection.Search.SearchResults`1"/> contains an enumerator that uses <paramref name="reader"/>,
+            when the enumerator or the result instance gets disposed, the <paramref name="reader"/> will be disposed.
+            
+            Also note that although <see cref="P:Sitecore.Xdb.Collection.Search.SearchResults`1.TotalHits"/> is an <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>, 
+            we are blocking when reading the stream. This is because <paramref name="reader"/> does not have async support.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.DataRecordMapper">
+            <summary>
+            Maps <see cref="T:Sitecore.Xdb.Collection.Model.DataRecord"/> objects to a solr document.
+            </summary>
+            <remarks>
+            The solr document representation is an object model based on simple .net types,
+            and <see cref="T:System.Collections.Generic.IDictionary`2"/> to represent complex properties.
+            
+            The field values are .net types primitive types supported by <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrPrimitiveFieldsMapper"/>, 
+            with the exception of the _childDocuments_ field that would contain a list of <see cref="T:System.Collections.Generic.IDictionary`2"/> within.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.DataRecordMapper.ReflectProperties(System.Object)">
+            <remarks>This method excludes indexer properties i.e. ones accessed like: <c>objectToIndex[0]</c></remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.DataRecordMapper.ReflectedPropertyCanBeIndexed(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <remarks>
+            The reflected property can not be indexed in this cases:
+            <list type="bullet">
+                <item><c>null</c> values</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.Id"/> property (although this field is not searchable, it is already indexed via the <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrDocuments.SolrDocumentBuilder"/> constructor as we need the id when retrieving results)</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.ConcurrencyToken"/> property (this field is not searchable)</item>
+                <item>The <see cref="P:Sitecore.Xdb.Collection.Model.DataRecord.Facets"/> property (it is indexed in a custom way in <see cref="M:Sitecore.Xdb.Collection.Search.Solr.DataRecordMapper.GetProperties(Sitecore.Xdb.Collection.Model.DataRecord)"/></item>
+                <item>the property contains a list of other <see cref="T:Sitecore.Xdb.Collection.Model.DataRecord"/>, such as <see cref="P:Sitecore.Xdb.Collection.Model.ContactDataRecord.Interactions"/></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.Sampling.GetSamplePercentile(System.Guid)">
+            <summary>
+            Generates an evenly distributed (pseudo) random number given an ID. A query for 0 &lt; Percentile &lt; 0.2 will give approx. 20 % of the entities.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrReader">
+            <summary>Provides read capability to the Solr index.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReader.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="settings">The settings controlling the behavior of this reader instance.</param>
+            <param name="xdbModel">The XDB model.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReader.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings,Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="settings">The settings controlling the behavior of this reader instance.</param>
+            <param name="xdbModel">The XDB model.</param>
+            <param name="httpClientFactory">Web client factory.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReader.GetDataCurrentlyIndexedToken">
+            <summary>
+            Gets a token that represents all currently indexed data.
+            </summary>
+            <returns>The token bytes.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReader.SearchContacts(Sitecore.XConnect.Search.Queries.SearchQuery)">
+            <summary>
+            Searches the indexed contacts returning the ids for the matching contacts.
+            </summary>
+            <param name="searchQuery">the search query.</param>
+            <returns>the list of contact ids</returns>
+            <remarks>Search provider must implement all supported <see cref="T:Sitecore.XConnect.Search.Queries.QueryNodeType" />s used by <see cref="T:Sitecore.XConnect.Search.Queries.PredicateNode" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="searchQuery" /> is <c>null</c></exception>
+             <exception cref="T:System.ArgumentException"> when property <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Domain"/> of <paramref name="searchQuery"/> has value not equal to <see cref="F:Sitecore.XConnect.Search.Queries.SearchQueryDomain.Contacts"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">when <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Predicate"/> of <paramref name="searchQuery" /> contains a node that's not supported</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReader.SearchInteractions(Sitecore.XConnect.Search.Queries.SearchQuery)">
+            <summary>
+            Searches the indexed interactions returning pairs of interaction and contact ids for the matching interactions.
+            </summary>
+            <param name="searchQuery">the search query.</param>
+            <returns>the list of contact ids</returns>
+            <remarks>Search provider must implement all supported <see cref="T:Sitecore.XConnect.Search.Queries.QueryNodeType" />s used by <see cref="T:Sitecore.XConnect.Search.Queries.PredicateNode" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="searchQuery" /> is <c>null</c></exception>
+             <exception cref="T:System.ArgumentException"> when property <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Domain"/> of <paramref name="searchQuery"/> has value not equal to <see cref="F:Sitecore.XConnect.Search.Queries.SearchQueryDomain.Interactions"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">when <see cref="P:Sitecore.XConnect.Search.Queries.SearchQuery.Predicate"/> of <paramref name="searchQuery" /> contains a node that's not supported</exception>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri">
+            <summary>
+            Represents a properly formatted Solr core URL.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Constructor for SolrCoreUri type.
+            </summary>
+            <param name="coreUri">Initial path to Solr core i.e. http://localhost:8388/solr/xdb. </param>
+            <param name="requireHttps"><c>true</c> if HTTPS is required.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri.CoreName">
+            <summary>
+            Name of Solr core taken from connection string
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri.Append(System.String)">
+            <summary>
+            Adding additional segments to the end of the initial path.
+            </summary>
+            <param name="relativeUri">Additional segments to be added to the end of core URI.</param>
+            <returns>Returns new URI with added additional segments to the end of the initial path.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri.ReplaceCoreName(System.String)">
+            <summary>
+            Replaces core name.
+            </summary>
+            <param name="newCoreName">Core name.</param>
+            <returns>Returns new URI with replaced core name.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrCoreUri.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings">
+            <summary>
+            Settings for <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrReader"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes an instance of the settings class.
+            With default encoding System.Text.Encoding.UTF8
+            </summary>
+            <param name="connectionStringName">The connection string name for the absolute solr core url.</param>
+            <param name="requireHttps">Indicates if HTTPS connection should be used.</param>
+            <exception cref="T:System.UriFormatException"><paramref name="connectionStringName"/> points to a non-absolute http or https url.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionStringName"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="connectionStringName"/> is not found, is empty or points to an empty url.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings.#ctor(System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="connectionString">Connection string.</param>
+            <param name="requireHttps"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes an instance of the settings class using runtime settings from dependency injection.
+            </summary>
+            <param name="options">The runtime settings IConfiguration instance used to bind properties.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrReaderSettings.GetJsonSearchByIdUri(System.String)">
+            <summary>
+            Gets an uri that can be used to retrieve a document by id using search.
+            </summary>
+            <param name="id">The id of the document.</param>
+            <returns>The absolute url.</returns>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrSettings">
+            <summary>
+            Basic Solr settings
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrSettings.#ctor(System.Text.Encoding,System.String,System.Boolean)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="encoding">Content Encoding.</param>
+            <param name="connectionString">The connection string, absolute solr core url.</param>
+            <param name="requireHttps">Indicates if HTTPS connection should be used.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrSettings.Encoding">
+            <summary>
+            Encoding 
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrSettings.SolrCoreUri">
+            <summary>
+            Gets SolrCoreUri object representing connection uri to SOLR
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrWebClientFactory">
+            <summary>
+            Implementation of Solr web client factory.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWebClientFactory.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWebClientFactory.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWebClientFactory.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the class from DI configuration.
+            </summary>
+            <param name="options">DI configuration options.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWebClientFactory.GetHttpClient(Sitecore.Xdb.Collection.Search.Solr.WebClientProperties)">
+            <summary>
+            Gets Http client.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrWriter">
+            <summary>Provides write capability to the Solr index.</summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.XConnect.Schema.XdbModel)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="writerSettings">The settings controlling the behavior of this writer instance.</param>
+            <param name="xdbModel">The XDB model.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.#ctor(Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings,Sitecore.XConnect.Schema.XdbModel,Sitecore.Xdb.Collection.Search.Solr.IWebClientFactory)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="writerSettings">The settings controlling the behavior of this writer instance.</param>
+            <param name="xdbModel">The XDB model.</param>
+            <param name="webClientFactory">Http client factory.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.Write(Sitecore.Xdb.Collection.Indexing.ChangedDataRecords)">
+            <summary>The set of changes to write to the index.</summary>
+            <param name="changes">The changes.</param>
+            <exception cref="T:System.ArgumentNullException">The specified <paramref name="changes" /> was <c>null</c>.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.SignalChangesHaveBeenWritten(System.Byte[])">
+            <summary>
+            Signals all changes have been indexed, so the token associated to the index for search reflect this.
+            </summary>
+            <param name="token">The token indicating all changes have been indexed.</param>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.SendJsonPostsToSolr(System.Collections.Generic.IEnumerable{System.String})">
+            <remarks>
+            This method sends the Json jsonPosts as it reads them from <paramref name="jsonPosts"/>,
+            so all jsonPosts are not loaded into memory at once (as long as the caller also avoids doing the same).
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.SendJsonPostsToSolr(System.Uri,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Sends Json Posts To Solr
+            </summary>
+            <param name="updateUri">Uri for update request</param>
+            <param name="jsonPosts">collection of serialized data</param>
+            <returns>Task to process</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.ExecutePostRequest(System.Uri,System.String)">
+            <summary>
+            Executes post request as an application/json data type.
+            </summary>
+            <param name="uri">Uri to request.</param>
+            <param name="jsonValue">Json String  content to be posted</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.ParallelProcessing``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Threading.SemaphoreSlim)">
+            <summary>
+            Processes enumerable data concurrently.
+            </summary>
+            <param name="dataToProcess">Collection to be processed.</param>
+            <param name="asyncFunc">Processing function.</param>
+            <param name="throttle">Semaphore to control amount of concurrent tasks.</param>
+            <typeparam name="T">Data type</typeparam>
+            <returns>Task to be executed.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.RunWithThrottle``1(System.Func{``0,System.Threading.Tasks.Task},``0,System.Threading.SemaphoreSlim)">
+            <summary>
+            Task runner with throttling to control amount of concurrent tasks for writing functionality.
+            </summary>
+            <param name="asyncFunc">Function to execute.</param>
+            <param name="data">Data to process</param>
+            <param name="throttle">Semaphore instance.</param>
+            <typeparam name="T">Processing data type</typeparam>
+            <returns>Task to be executed.</returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.RetryAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Int32)">
+            <summary>
+            Retry for tasks.
+            </summary>
+            <param name="toExecute">Task to execute with retry.</param>
+            <param name="retryCount">Amount of retries.</param>
+            <param name="maximumTimeoutMilliseconds">Maximum timeout between retries. Is the limit for increasing timeout on each retry.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.Dispose">
+            <summary>
+            Dispose resources
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriter.Dispose(System.Boolean)">
+            <summary>
+            Dispose resources
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings">
+            <summary>
+            Settings for <see cref="T:Sitecore.Xdb.Collection.Search.Solr.SolrWriter"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.#ctor(System.String,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Text.Encoding,Sitecore.Xdb.Collection.Indexing.IndexerSettings)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="connectionString">The connection string, absolute solr core url.</param>
+            <param name="requireHttps">Indicates if HTTPS connection should be used.</param>
+            <param name="maximumUpdateBatchSize">The maximum amount of document updates (this includes adds) to send together in one post to solr.</param>
+            <param name="maximumDeleteBatchSize">The maximum amount of document deletes to send together in one post to solr.</param>
+            <param name="maximumCommitMilliseconds">How many milliseconds can pass before the change already sent to Solr are committed and made available for search.</param>
+            <param name="parallelizationDegree">Maximum amount of concurrent write operations.</param>
+            <param name="retryCount">Number of write retries.</param>
+            <param name="maximumRetryDelayMilliseconds">Maximum delay between retries.</param>
+            <param name="indexerSettings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+            <param name="encoding">String encoding.</param>
+            <exception cref="T:System.UriFormatException"><paramref name="connectionString"/> points to a non-absolute http or https url.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionString"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumDeleteBatchSize"/> or <paramref name="maximumUpdateBatchSize"/> was less than or equal to 0, or the maximum commit milliseconds was less than 0.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="connectionString"/> is not found, is empty or points to an empty url.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.#ctor(System.String,System.Boolean,System.Int32,System.Int32,System.Int32,Sitecore.Xdb.Collection.Indexing.IndexerSettings)">
+            <summary>
+            Initializes an instance of the settings class.
+            </summary>
+            <param name="connectionStringName">The connection string name for the absolute solr core url.</param>
+            <param name="requireHttps">Indicates if HTTPS connection should be used.</param>
+            <param name="maximumUpdateBatchSize">The maximum amount of document updates (this includes adds) to send together in one post to solr.</param>
+            <param name="maximumDeleteBatchSize">The maximum amount of document deletes to send together in one post to solr.</param>
+            <param name="maximumCommitMilliseconds">How many milliseconds can pass before the change already sent to Solr are committed and made available for search.</param>
+            <param name="indexerSettings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+            <exception cref="T:System.UriFormatException"><paramref name="connectionStringName"/> points to a non-absolute http or https url.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionStringName"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumDeleteBatchSize"/> or <paramref name="maximumUpdateBatchSize"/> was less than or equal to 0, or the maximum commit milliseconds was less than 0.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="connectionStringName"/> is not found, is empty or points to an empty url.</exception>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Sitecore.Xdb.Collection.Indexing.IndexerSettings)">
+            <summary>
+            Initializes an instance of the settings class using runtime configuration settings.
+            </summary>
+            <param name="options">The options object passed in by dependency injection with the runtime settings configuration.</param>
+            <param name="settings">The standard indexer settings that are not specific to a particular Search Provider.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.IndexerSettings">
+            <summary>
+            Gets standard indexer settings that are not specific to a particular Search Provider.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.MaximumUpdateBatchSize">
+            <summary>
+            Gets the maximum amount of documents to send together in one post to solr.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.MaximumDeleteBatchSize">
+            <summary>
+            Gets the maximum amount of document deletes to send together in one post to solr.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.MaximumCommitMilliseconds">
+            <summary>
+            Gets how many milliseconds can pass before the change already sent to Solr are committed and made available for search.
+            </summary>
+            <remarks>
+            This setting corresponds to Solr's commitwithin parameter.
+            More information:
+            https://cwiki.apache.org/confluence/display/solr/UpdateHandlers+in+SolrConfig#UpdateHandlersinSolrConfig-commitWithin
+            How it relates to near real time searching:
+            https://cwiki.apache.org/confluence/display/solr/Near+Real+Time+Searching
+            
+            Specifying 0 disables this behavior, falling back to Solr's configuration.
+            Such as autosoftcommit, which is disabled in a default Solr installation.
+            In this case, only hard commits, depending on the autoCommit configuration.
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.UpdateJsonUrl">
+            <summary>
+            Gets the url to the Solr's update handler for json, including the commitWithin argument in the query string
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.UpdateWithoutCommitJsonUrl">
+            <summary>
+            Gets the url to the Solr's update handler for json, NOT including the commitWithin argument in the query string
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.AdminUrl">
+            <summary>
+            Gets the Admin url to the SOLR instance
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.RetryCount">
+            <summary>
+            Amount of write retries before fail.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.SolrWriterSettings.MaximumRetryDelayMilliseconds">
+            <summary>
+            Maximum delay between retries.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties">
+            <summary>
+            Defines a class with properties to be used when an <see cref="T:System.Net.Http.HttpClient"/> instance is being created.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.#ctor(System.Text.Encoding,System.Net.ICredentials)">
+            <summary>
+            Initializes a new instance of <see cref="T:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties"/>.
+            </summary>
+            <param name="encoding">The encoding.</param>
+            <param name="credentials">The Solr credentials.</param>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.Encoding">
+            <summary>
+            Gets the encoding to be used in web requests to Solr.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.Credentials">
+            <summary>
+            Gets the credentials that should be used for authentication in Solr, if specified; otherwise, null.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.Equals(Sitecore.Xdb.Collection.Search.Solr.WebClientProperties)">
+            <summary>
+            Checks if this instance is equal to the <paramref name="other"/>.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sitecore.Xdb.Collection.Search.Solr.WebClientProperties.GetHashCode">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{17DD5718-6E13-4F2C-9738-B410396D4552}"
 EndProject
@@ -29,12 +29,51 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{D27C83
 		documentation\images\hackathon.png = documentation\images\hackathon.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XConnectExtensions", "XConnectExtensions", "{C75B62D6-0AD3-4035-9BBD-E5E9F05E5759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XConnect.Foundation.XConnectExtensions", "src\Foundation\XConnectExtensions\code\XConnect.Foundation.XConnectExtensions.csproj", "{3CDEC166-D334-4360-9929-846628794D75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PageViewAnalytics", "PageViewAnalytics", "{562AEB3D-4B68-4223-9560-0CEE191792CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XConnect.Feature.PageViewAnalytics", "src\Feature\PageViewAnalytics\code\XConnect.Feature.PageViewAnalytics.csproj", "{232BB739-66B8-4558-A854-929566153670}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XConnectUtility", "XConnectUtility", "{578B8861-C535-41FF-A1B4-2887BDD142BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AddXdbContact", "AddXdbContact", "{C03386CE-D9E5-4DC0-B5CA-533459F75EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XConnect.Feature.AddXdbContact", "src\Feature\AddXdbContact\code\XConnect.Feature.AddXdbContact.csproj", "{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CDEC166-D334-4360-9929-846628794D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CDEC166-D334-4360-9929-846628794D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CDEC166-D334-4360-9929-846628794D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CDEC166-D334-4360-9929-846628794D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232BB739-66B8-4558-A854-929566153670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232BB739-66B8-4558-A854-929566153670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232BB739-66B8-4558-A854-929566153670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232BB739-66B8-4558-A854-929566153670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D27C83D2-2EAF-4E44-A1ED-2B3C2EBB5854} = {DAFED8F5-6CBD-4384-AAD6-DC3BCCF24911}
+		{C75B62D6-0AD3-4035-9BBD-E5E9F05E5759} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
+		{3CDEC166-D334-4360-9929-846628794D75} = {C75B62D6-0AD3-4035-9BBD-E5E9F05E5759}
+		{562AEB3D-4B68-4223-9560-0CEE191792CE} = {17DD5718-6E13-4F2C-9738-B410396D4552}
+		{232BB739-66B8-4558-A854-929566153670} = {562AEB3D-4B68-4223-9560-0CEE191792CE}
+		{578B8861-C535-41FF-A1B4-2887BDD142BC} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
+		{C03386CE-D9E5-4DC0-B5CA-533459F75EF5} = {17DD5718-6E13-4F2C-9738-B410396D4552}
+		{90F609C7-84A3-4D78-B5EE-1F0A735C1B2D} = {C03386CE-D9E5-4DC0-B5CA-533459F75EF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
